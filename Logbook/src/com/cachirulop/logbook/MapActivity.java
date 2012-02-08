@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.dmm.logbook;
+package com.cachirulop.logbook;
 
 import android.app.Activity;
 import android.os.Bundle;
