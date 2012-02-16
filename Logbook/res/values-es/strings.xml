@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Bitácora</string>
+
+    <string name="tab_title_logbook">Información</string>
+    <string name="tab_title_summary">Resumen</string>
+    <string name="tab_title_map">Mapa</string>
+    <string name="tab_title_gps">GPS</string>
+
+        <string name="menu_add">Añadir</string>
+</resources>
