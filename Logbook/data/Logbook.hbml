@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping schema="Logbook" assembly="DataMap" namespace="com.cachirulop.logbook" p1:Guid="200c7ba1-1c40-4a37-8431-1fd7311bc9e5" xmlns:p1="http://devart.com/schemas/EntityDeveloper/1.0" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="LbTrip" table="lb_trip" schema="`main`" p1:Guid="972db4e8-9095-4770-9be7-bb0eecce4b11">
+    <id name="IdTrip" type="Int32" p1:ValidateRequired="True" p1:Guid="5b9365e2-d1c9-4516-86bb-af9a69818b32">
+      <column name="id_trip" not-null="true" sql-type="INTEGER" />
+      <generator class="identity" />
+    </id>
+    <property name="StartDate" type="DateTime" p1:ValidateRequired="True" p1:Guid="48c1a546-7e2c-4422-aedb-d3135829fc16">
+      <column name="start_date" default="CURRENT_DATE" not-null="true" sql-type="DATETIME" />
+    </property>
+    <property name="Name" type="String" p1:ValidateRequired="True" p1:Guid="4fb921ce-8865-4654-94c4-082316e2f70e">
+      <column name="name" not-null="true" sql-type="VARCHAR" />
+    </property>
+    <property name="Description" type="String" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="2e120c94-6f8e-41c2-b393-1c265363e9f8">
+      <column name="description" not-null="false" sql-type="VARCHAR" />
+    </property>
+    <property name="InitialKilometers" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="11ce2d77-e3c1-4bcc-8f21-26f058b647a3">
+      <column name="initial_kilometers" />
+    </property>
+    <property name="EndKilometers" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="a6072587-0197-40b1-a886-e2c971539df9">
+      <column name="end_kilometers" />
+    </property>
+    <property name="EndDate" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="46f62d4f-eda7-40e2-a37d-30a3f72b63de">
+      <column name="end_date" />
+    </property>
+    <set name="LbDayTrips" inverse="true" generic="false" p1:AssociationGuid="704fe42d-94e1-4e2a-82f5-2b2c5ff073cd" p1:Guid="4a1ecee8-e91a-4a24-89c2-9211c7dead42">
+      <key>
+        <column name="id_trip" />
+      </key>
+      <one-to-many class="LbDayTrip" />
+    </set>
+  </class>
+  <class name="LbDayTrip" table="lb_day_trip" schema="`main`" p1:Guid="f02ed5b8-11a2-41a0-8c6d-4239403d198d">
+    <id name="IdDayTrip" type="Int32" p1:ValidateRequired="True" p1:Guid="87f5bbe1-3091-4ab3-b5bd-d0c9016972f8">
+      <column name="id_day_trip" not-null="true" sql-type="INTEGER" />
+      <generator class="identity" />
+    </id>
+    <property name="DayTripDate" type="DateTime" p1:ValidateRequired="True" p1:Guid="42abaf11-0465-459e-a114-db63121ccb23">
+      <column name="day_trip_date" default="CURRENT_DATE" not-null="true" sql-type="DATETIME" />
+    </property>
+    <property name="Description" type="String" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="5937b7da-cefb-4ba8-b531-5651dd1b2357">
+      <column name="description" not-null="false" sql-type="VARCHAR" />
+    </property>
+    <many-to-one name="LbTrip" class="LbTrip" p1:AssociationGuid="704fe42d-94e1-4e2a-82f5-2b2c5ff073cd" p1:Guid="b37c265a-3844-4097-bde1-827fce89028f">
+      <column name="id_trip" not-null="true" sql-type="INTEGER" />
+    </many-to-one>
+    <set name="LbDayEvents" inverse="true" generic="false" p1:AssociationGuid="79afb762-07a9-4a9c-b72f-21f176559cff" p1:Guid="496cd76a-6cf5-4181-99ee-a1c158622f07">
+      <key>
+        <column name="id_day_trip" />
+      </key>
+      <one-to-many class="LbDayEvent" />
+    </set>
+  </class>
+  <class name="LbDayEvent" table="lb_day_event" schema="`main`" p1:Guid="dedbbd32-caae-4039-bed6-ce36205bd8aa">
+    <id name="IdDayEvent" type="Int32" p1:ValidateRequired="True" p1:Guid="f9547db3-fd9d-45f6-b6f7-0d63bc12c431">
+      <column name="id_day_event" not-null="true" sql-type="INTEGER" />
+      <generator class="identity" />
+    </id>
+    <property name="Description" type="String" p1:ValidateRequired="True" p1:Guid="1d49ffdb-9445-47af-ae68-95c41457dc2c">
+      <column name="description" not-null="true" sql-type="VARCHAR" />
+    </property>
+    <property name="EventTimestamp" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="3716cb07-cabf-4ca0-be7a-ba696b6d9666">
+      <column name="event_timestamp" default="CURRENT_TIMESTAMP" not-null="false" sql-type="DATETIME" />
+    </property>
+    <many-to-one name="LbDayTrip" class="LbDayTrip" p1:AssociationGuid="79afb762-07a9-4a9c-b72f-21f176559cff" p1:Guid="b2fbfdae-647f-4829-957c-fb8da4706e7e">
+      <column name="id_day_trip" not-null="true" sql-type="INTEGER" />
+    </many-to-one>
+    <many-to-one name="LbGpsLog" class="LbGpsLog" p1:AssociationGuid="56ac03e4-1776-4dfc-a266-3b6f45ab6bb9" p1:Guid="318d8d16-2071-447e-a265-8e4060eca68b">
+      <column name="id_gps_log" not-null="true" sql-type="INTEGER" />
+    </many-to-one>
+    <many-to-one name="LbEventType" class="LbEventType" p1:AssociationGuid="c420488d-49d9-4823-84d9-8587d020076b" p1:Guid="cef79a92-c6c4-448a-86a4-4a40a8b6ca41">
+      <column name="id_event_type" not-null="true" sql-type="INTEGER" />
+    </many-to-one>
+    <one-to-one name="LbEventDataToll" class="LbEventDataToll" property-ref="LbDayEvent" p1:AssociationGuid="d8ae1d17-b464-43e8-a00f-72cd8d14f679" p1:Guid="5b7825be-ccd3-4517-a572-b5295d254a9c" />
+    <one-to-one name="LbEventDataFuel" class="LbEventDataFuel" property-ref="LbDayEvent" p1:AssociationGuid="82a7666f-1550-42ba-8c68-eb2b7cc21a72" p1:Guid="62a3640d-38b4-46e0-8c15-57379af7ac26" />
+    <one-to-one name="LbEventDataCamping" class="LbEventDataCamping" property-ref="LbDayEvent" p1:AssociationGuid="f4c2189e-aee9-4104-8666-be350de7a308" p1:Guid="40071d60-d940-48d9-a635-dbff16bc607d" />
+  </class>
+  <class name="LbEventDataCamping" table="lb_event_data_camping" schema="`main`" p1:Guid="5cc833d9-2a82-4160-9cda-054ef6cf8453">
+    <id name="IdDayEvent" type="String" p1:ValidateRequired="True" p1:Guid="1a9fdc69-5056-4e7e-9a98-b8c964d20d3a">
+      <column name="id_day_event" />
+    </id>
+    <property name="StartDate" type="DateTime" p1:ValidateRequired="True" p1:Guid="318a53ac-3d31-4033-b49c-9e1baf295e81">
+      <column name="start_date" not-null="true" sql-type="DATETIME" />
+    </property>
+    <property name="EndDate" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="367446e9-0fea-46a7-a21f-cd3e530d6d90">
+      <column name="end_date" not-null="false" sql-type="DATETIME" />
+    </property>
+    <property name="Valuation" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="5f624a75-42a2-43b1-a4b1-ed523f82faec">
+      <column name="valuation" not-null="false" sql-type="INTEGER" />
+    </property>
+    <property name="PricePerNight" type="Double" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="299f22ff-5e75-4e0f-8026-698e389cd503">
+      <column name="price_per_night" not-null="false" sql-type="DOUBLE" />
+    </property>
+    <property name="PriceTotal" type="Double" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="56943f95-bac3-4068-af66-116e924e02f7">
+      <column name="price_total" not-null="false" sql-type="DOUBLE" />
+    </property>
+    <property name="Comments" type="String" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="155e4315-bba0-46dd-a9ed-6ed3acda8ddc">
+      <column name="comments" not-null="false" sql-type="TEXT" />
+    </property>
+    <many-to-one name="LbDayEvent" class="LbDayEvent" p1:AssociationGuid="f4c2189e-aee9-4104-8666-be350de7a308" p1:Guid="a66cb3e7-eb05-42e4-9ff8-350e29566ea0">
+      <column name="id_day_event" not-null="true" sql-type="INTEGER" />
+    </many-to-one>
+  </class>
+  <class name="LbEventDataFuel" table="lb_event_data_fuel" schema="`main`" p1:Guid="09deb4c9-3232-419d-b0e2-37ace56b5687">
+    <id name="IdDayEvent" type="Int32" p1:ValidateRequired="True" p1:Guid="bfd0b412-704e-474a-97a4-a5b1e69790cf">
+      <column name="id_day_event" />
+    </id>
+    <property name="Litres" type="Double" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="ecaf97fc-517c-4c29-b8b8-b70989d3d934">
+      <column name="litres" not-null="false" sql-type="DOUBLE" />
+    </property>
+    <property name="Kilometers" type="Int32" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="5f381e86-1056-4b8f-94d7-3c903d80b01c">
+      <column name="kilometers" not-null="false" sql-type="INTEGER" />
+    </property>
+    <property name="Price" type="Double" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="4dd497d6-9853-4263-aa5f-1b8a113065cd">
+      <column name="price" not-null="false" sql-type="DOUBLE" />
+    </property>
+    <many-to-one name="LbDayEvent" class="LbDayEvent" p1:AssociationGuid="82a7666f-1550-42ba-8c68-eb2b7cc21a72" p1:Guid="1def1917-278d-46f8-95c5-50cb8cffc7fd">
+      <column name="id_day_event" not-null="true" sql-type="INTEGER" />
+    </many-to-one>
+  </class>
+  <class name="LbEventDataToll" table="lb_event_data_toll" schema="`main`" p1:Guid="c94e3615-5726-417d-85bf-240ec5b08f83">
+    <id name="IdDayEvent" type="Int32" p1:ValidateRequired="True" p1:Guid="e7405c9e-8b31-481b-8f12-2b2d6f5642a3">
+      <column name="id_day_event" />
+    </id>
+    <property name="Price" type="Double" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="f95fd7e3-95a8-44e8-b430-053d0104997e">
+      <column name="price" not-null="false" sql-type="DOUBLE" />
+    </property>
+    <many-to-one name="LbDayEvent" class="LbDayEvent" p1:AssociationGuid="d8ae1d17-b464-43e8-a00f-72cd8d14f679" p1:Guid="99a1a076-cab6-410e-8a18-a8e8abad7c04">
+      <column name="id_day_event" not-null="true" sql-type="INTEGER" />
+    </many-to-one>
+  </class>
+  <class name="LbEventType" table="lb_event_type" schema="`main`" p1:Guid="63e89422-0743-4ff5-a753-bacca6d5014c">
+    <id name="IdEventType" type="Int32" p1:ValidateRequired="True" p1:Guid="7460667c-bd42-4cf9-9d11-cdbff4d5e6d0">
+      <column name="id_event_type" not-null="true" sql-type="INTEGER" />
+      <generator class="identity" />
+    </id>
+    <property name="Description" type="String" p1:ValidateRequired="True" p1:Guid="5b94a7c4-4c56-4fcf-a27b-559e592ae084">
+      <column name="description" not-null="true" sql-type="TEXT" />
+    </property>
+    <set name="LbDayEvents" generic="false" p1:AssociationGuid="c420488d-49d9-4823-84d9-8587d020076b" p1:Guid="30a1e5e5-44bd-48ef-bc59-c25f5de2d254">
+      <key>
+        <column name="id_event_type" not-null="true" sql-type="INTEGER" />
+      </key>
+      <one-to-many class="LbDayEvent" />
+    </set>
+  </class>
+  <class name="LbGpsLog" table="lb_gps_log" schema="`main`" p1:Guid="f7bd60a5-e65b-40b5-9388-0034f26cd94c">
+    <id name="IdGpsLog" type="Int32" p1:ValidateRequired="True" p1:Guid="fc81f74a-8c9a-4e01-9550-65a6453fc309">
+      <column name="id_gps_log" not-null="true" sql-type="INTEGER" />
+      <generator class="identity" />
+    </id>
+    <property name="Latitude" type="Double" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="e8147b9b-ee89-402e-9313-7c9ad76d0475">
+      <column name="latitude" not-null="false" sql-type="DOUBLE" />
+    </property>
+    <property name="Longitude" type="Double" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="1454b8a0-d00c-45d4-a07b-b4a7a318097d">
+      <column name="longitude" not-null="false" sql-type="DOUBLE" />
+    </property>
+    <property name="Date" type="DateTime" p1:nullable="true" p1:ValidateRequired="False" p1:Guid="97b812e7-ecf8-44d3-89f5-5cb0616a12c5">
+      <column name="date" default="CURRENT_TIMESTAMP" not-null="false" sql-type="DATETIME" />
+    </property>
+    <set name="LbDayEvents" inverse="true" generic="false" p1:AssociationGuid="56ac03e4-1776-4dfc-a266-3b6f45ab6bb9" p1:Guid="73a1fc1c-d3d6-4875-b69e-17e170beb351">
+      <key>
+        <column name="id_gps_log" />
+      </key>
+      <one-to-many class="LbDayEvent" />
+    </set>
+  </class>
+</hibernate-mapping>
