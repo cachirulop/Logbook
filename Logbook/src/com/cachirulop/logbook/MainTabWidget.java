@@ -6,7 +6,7 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.widget.TabHost;
 
-import com.dmm.logbook.R;
+import com.cachirulop.logbook.R;
 
 public class MainTabWidget extends TabActivity {
 	public void onCreate(Bundle savedInstanceState) {
@@ -36,7 +36,7 @@ public class MainTabWidget extends TabActivity {
 	    tabHost.addTab(spec);
 
 	    // Map
-	    intent = new Intent().setClass(this, MapActivity.class);
+	    intent = new Intent().setClass(this, LogbookMapActivity.class);
 	    spec = tabHost.newTabSpec("map").setIndicator(res.getString(R.string.tab_title_map),
 	                      res.getDrawable(R.drawable.ic_tab_map))
 	                  .setContent(intent);

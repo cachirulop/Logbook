@@ -1,0 +1,11 @@
+androiddebugkey, 22-ene-2012, PrivateKeyEntry, 
+Huella digital de certificado (MD5): BD:4B:03:4B:65:49:FB:3D:6B:FC:98:14:EB:62:40:27
+
+Datos devueltos por google:
+clave: 0sDBgC6cPKyk4QQhxyAsEe3oVHWLHfUBeHNYSUw
+XML de ejemplo:
+<com.google.android.maps.MapView
+     android:layout_width="fill_parent"
+     android:layout_height="fill_parent"
+     android:apiKey="0sDBgC6cPKyk4QQhxyAsEe3oVHWLHfUBeHNYSUw"
+/>
