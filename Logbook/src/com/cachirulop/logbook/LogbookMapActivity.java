@@ -3,7 +3,8 @@
  */
 package com.cachirulop.logbook;
 
-import android.app.Activity;
+import com.google.android.maps.MapActivity;
+
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -11,7 +12,7 @@ import android.widget.TextView;
  * @author david
  *
  */
-public class MapActivity extends Activity {
+public class LogbookMapActivity extends MapActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -20,5 +21,11 @@ public class MapActivity extends Activity {
 		TextView textview = new TextView(this);
         textview.setText("Map activity tab");
         setContentView(textview);
+	}
+
+	@Override
+	protected boolean isRouteDisplayed() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

@@ -6,7 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import com.dmm.logbook.R;
+import com.cachirulop.logbook.R;
 
 public class LogbookActivity extends Activity {
 	public static final int MENU_ADD = 1;
