@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Bitácora</string>
+    <string name="app_name">Bitácora - 2</string>
 
     <string name="tab_title_logbook">Información</string>
     <string name="tab_title_summary">Resumen</string>

@@ -10,8 +10,8 @@ import com.cachirulop.logbook.R;
 
 public class LogbookActivity extends Activity {
 	public static final int MENU_ADD = 1;
-	
-    /** Called when the activity is first created. */
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -12,7 +12,6 @@ import android.widget.TextView;
  *
  */
 public class GPSActivity extends Activity {
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
